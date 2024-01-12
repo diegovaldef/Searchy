@@ -1,5 +1,5 @@
 from selenium import webdriver
-from requests_html import AsyncHTMLSession
+from requests_html import HTMLSession
 from lxml import html
 from time import sleep
 from os import system, name as os_name
@@ -64,7 +64,7 @@ class Scrapper:
                 
             case "requests":
 
-                session = AsyncHTMLSession()
+                session = HTMLSession()
                 response = session.get(url)
                 html_string = response.html.html
                 page_html = html.fromstring(html_string)
