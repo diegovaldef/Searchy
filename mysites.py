@@ -1,6 +1,5 @@
 from default_site import Site
 from re import search
-from time import sleep
 
 class Amazon(Site):
     def __init__(self):
