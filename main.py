@@ -1,4 +1,4 @@
-from async_scrapper import Scrapper
+from scrapper import Scrapper
 import mysites
 
 amazon = mysites.Amazon()
