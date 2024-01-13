@@ -48,7 +48,7 @@ class Scrapper:
             
         self.exit()
     
-    async def get_html(self, url):
+    def get_html(self, url):
     
         match self.site.html_obteined_with:
             
