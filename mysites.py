@@ -5,7 +5,7 @@ class Amazon(Site):
     def __init__(self):
         self.name = "Amazon"
         self.url = "https://amazon.com.mx/s?k="
-        self.html_obtained_with = "selenium"
+        self.html_obteined_with = "selenium"
         self.sleep_time = 2
         self.base_path = '//div[contains(@data-cel-widget, "search_result_")]'
         self.paths = {
@@ -90,7 +90,7 @@ class ML(Site):
         
         self.name = "Mercado Libre"
         self.url = "https://listado.mercadolibre.com.mx/"
-        self.html_obtained_with = "requests"
+        self.html_obteined_with = "requests"
         self.base_path = '//div[@class="ui-search-result__wrapper"]'
         self.paths = {
 
