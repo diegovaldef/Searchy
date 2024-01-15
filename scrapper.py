@@ -4,6 +4,7 @@ from lxml import html
 from time import sleep
 from os import system, name as os_name
 import pandas as pd
+from concurrent.futures import ThreadPoolExecutor
 
 class Scrapper:
         
@@ -14,40 +15,40 @@ class Scrapper:
         
         self.driver = None
        
-        self.execute()
-        
-    def execute(self):
-        
-        for site in self.sites:
-            self.site = site
-            prompts = len(self.prompts)
-
-            for prompt in range(prompts):
-
-                self.product = self.prompts[prompt]
-                url = self.site.url + self.product
-                
-                while self.site.counter < 100:
-                
-                    self.html = self.get_html(url)
-                    self.elements = self.parse_html()
-                    self.dataframe = self.make_excel()
-
-                    try:
-                        
-                        if isinstance(self.html.xpath(self.site.next_page), str):
-                            url = self.site.prefix_next_page + self.html.xpath(self.site.next_page) + self.site.sufix_next_page
-                            
-                        else:
-                            url = self.site.prefix_next_page + self.html.xpath(self.site.next_page)[0] + self.site.sufix_next_page
-                        
-                    except IndexError:
-                        continue                    
-                        
-                self.site.counter = 0
+        with ThreadPoolExecutor as executor:
             
-        self.exit()
+            for site in self.sites:
+                
+                self.site = site
+                executor.map(self.execute, self.prompts)
+                
     
+        self.exit()
+        
+    def execute(self, prompt):
+        
+        url = self.site.url + self.prompts[prompt]
+        
+        while self.site.counter < 100:
+        
+            self.html = self.get_html(url)
+            self.elements = self.parse_html()
+            self.dataframe = self.make_excel()
+
+            try:
+                
+                if isinstance(self.html.xpath(self.site.next_page), str):
+                    url = self.site.prefix_next_page + self.html.xpath(self.site.next_page) + self.site.sufix_next_page
+                    
+                else:
+                    url = self.site.prefix_next_page + self.html.xpath(self.site.next_page)[0] + self.site.sufix_next_page
+                
+            except IndexError:
+                continue                    
+                
+        self.site.counter = 0
+            
+
     def get_html(self, url):
     
         match self.site.html_obteined_with:
