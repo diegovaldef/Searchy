@@ -5,7 +5,7 @@ from time import sleep
 from os import system, name as os_name
 import pandas as pd
 from concurrent.futures import ThreadPoolExecutor
-
+import mysites
 class Scrapper:
         
     def __init__(self, user_prompts):
@@ -126,3 +126,35 @@ class Scrapper:
             
         system("clear" if os_name == "posix" else "cls")
         print("Done!")
+        
+        
+def main():
+    
+    amazon = mysites.Amazon()
+    ml = mysites.ML()
+
+
+    user_prompts = {
+        
+        "prompts": [
+                
+            "Teclado Mecanico",
+            "Mouse",
+            "Monitor Gamer"
+                
+        ],    
+        
+        "sites": [
+
+            amazon,
+            ml
+            
+        ]
+        
+    }
+
+    Scrapper(user_prompts)
+
+
+if __name__ == "__main__":
+    main()
