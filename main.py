@@ -45,7 +45,34 @@ def ask_products():
         
         
 def ask_stores():
-    ...
+    
+    stores = {}
+    
+    while True:
+    
+        amazon = input("Do you want to search on Amazon? [y/n]")
+    
+        if amazon == "y":
+            stores["amazon"] = True
+            break
+    
+        elif amazon == "n":
+            stores["amazon"] = False
+            break
+    
+    while True:
+        
+        ml = input("Do you want to search on Mercado Libre [y/n]")
+        
+        if ml == "y":
+            stores["ml"] = True
+            break
+    
+        elif ml == "n":
+            stores["ml"] = False
+            break
+    
+
 
 def start_scrapper():
     
