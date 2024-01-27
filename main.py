@@ -76,7 +76,9 @@ def ask_stores():
         elif ml == "n":
             stores["ml"] = False
             break
-    
+        
+    return stores
+        
 def start_scrapper():
     
     Scrapper()
@@ -84,8 +86,8 @@ def start_scrapper():
 
 def main():
     
-    ask_products()
-    ask_stores()
+    products = ask_products()
+    stores = ask_stores()
     start_scrapper()
     
     
