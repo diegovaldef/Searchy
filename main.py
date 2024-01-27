@@ -27,7 +27,13 @@ MAX_PRODUCT_QTY = 5
     
 # }
 
-
+def welcome():
+    
+    print("Welcome!, here some reminders:\n")
+    print("- You can only search for a max of 5 products")
+    print("- Write 'finish' to complete the writing of products")
+    print("(if you don't want 5)\n\n")
+    
 def ask_products():
     
     products = []
@@ -42,7 +48,6 @@ def ask_products():
         products.append(product)
         
     return products
-        
         
 def ask_stores():
     
@@ -72,21 +77,11 @@ def ask_stores():
             stores["ml"] = False
             break
     
-
-
 def start_scrapper():
     
     Scrapper()
     
-    
-def welcome():
-    
-    print("Welcome!, here some reminders:\n")
-    print("- You can only search for a max of 5 products")
-    print("- Write 'finish' to complete the writing of products")
-    print("(if you don't want 5)\n\n")
-    
-    
+
 def main():
     
     ask_products()
