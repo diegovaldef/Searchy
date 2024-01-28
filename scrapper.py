@@ -124,4 +124,3 @@ class Scrapper:
             self.driver.close()
             
         system("clear" if os_name == "posix" else "cls")
-        print("Done!")
