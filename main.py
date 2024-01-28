@@ -90,7 +90,7 @@ def pre_scrapper():
 def post_scrapper():
     
     print("Done!")
-    print("Your Excel file is in this directory")
+    print("Your Excel file is in the same directory as the executable")
     sleep(2)
     print("Opening the results...")
     sleep(2)
