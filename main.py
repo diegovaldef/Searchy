@@ -1,31 +1,13 @@
-from scrapper import Scrapper
 import inflect
+from scrapper import Scrapper
 import mysites
 
+p = inflect.engine()
 amazon = mysites.Amazon()
 ml = mysites.ML()
-p = inflect.engine()
+
 
 MAX_PRODUCT_QTY = 5
-
-# user_prompts = {
-    
-#     "prompts": [
-            
-#         "Teclado Mecanico",
-#         "Mouse",
-#         "Monitor Gamer"
-            
-#     ],    
-    
-#     "sites": [
-
-#         amazon,
-#         ml
-        
-#     ]
-    
-# }
 
 def welcome():
     
@@ -102,7 +84,6 @@ def main():
     products = ask_products()
     stores = ask_stores()
     start_scrapper(products, stores)
-    
-    
+
 if __name__ == "__main__":
     main()
