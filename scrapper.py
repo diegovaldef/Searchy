@@ -111,7 +111,7 @@ class Scrapper:
             options = webdriver.ChromeOptions()
             options.add_argument("--headless")
                         
-            self.driver = webdriver(options=options)            
+            self.driver = webdriver.Chrome(options=options)            
                         
         return self.driver 
 
