@@ -84,6 +84,7 @@ def start_scrapper(products, stores):
     
     print("\nPerfect! Let's start to work")
     print("This may take some minutes (Some weird texts will appear, don't worry thats normal)")
+    sleep(2)
     
     Scrapper(user_prompts)
     
