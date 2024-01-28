@@ -1,6 +1,9 @@
 import inflect
 import sys
 from time import sleep
+import os
+import subprocess
+
 from scrapper import Scrapper
 import mysites
 
@@ -10,6 +13,7 @@ ml = mysites.ML()
 
 
 MAX_PRODUCT_QTY = 5
+excel_file = None
 
 def welcome():
     
@@ -22,6 +26,8 @@ def welcome():
     print("- The results will appear in a Excel file\n")
     
 def ask_products():
+    
+    global excel_file
     
     products = []
     welcome()
@@ -37,7 +43,9 @@ def ask_products():
             break
         
         products.append(product)
-        
+    
+    excel_file = f"{products[0]}.xlsx"
+    
     return products
         
 def ask_stores():
@@ -72,7 +80,27 @@ def ask_stores():
         
         
     return stores
-        
+
+def pre_scrapper():
+    
+    print("\nPerfect! Let's start to work")
+    print("This may take some minutes (Some weird texts will appear, don't worry thats normal)")
+    sleep(2)
+
+def post_scrapper():
+    
+    print("Done!")
+    print("Your Excel file is in this directory")
+    sleep(1)
+    print("Opening the results...")
+    sleep(2)
+    
+    try:
+        subprocess.Popen(['start', 'excel', excel_file], shell=True)
+
+    except Exception:
+        sys.exit("No se pudo abrir el archivo Excel")       
+
 def start_scrapper(products, stores):
     
     user_prompts = {
@@ -82,16 +110,10 @@ def start_scrapper(products, stores):
         
     }
     
-    print("\nPerfect! Let's start to work")
-    print("This may take some minutes (Some weird texts will appear, don't worry thats normal)")
-    sleep(2)
-    
+    pre_scrapper()
     Scrapper(user_prompts)
+    post_scrapper()
     
-    print("Done!")
-    print("Your Excel file is in this directory")
-    sleep(5)
-
 def main():
     
     products = ask_products()
