@@ -2,6 +2,7 @@ from selenium import webdriver
 from requests_html import HTMLSession
 from lxml import html
 from time import sleep
+from tqdm import tqdm
 from os import system, name as os_name
 import pandas as pd
 
@@ -73,7 +74,7 @@ class Scrapper:
         
     def parse_html(self):
 
-        for selected in self.html.xpath(self.site.base_path):
+        for selected in tqdm(self.html.xpath(self.site.base_path)):
             
             if self.site.counter < 100:
             
