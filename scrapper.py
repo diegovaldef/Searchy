@@ -55,26 +55,32 @@ class Scrapper:
             
             case "selenium":
                 
-                driver = self.start_driver()
-                driver.get(url)
-                sleep(self.site.sleep_time)
-                page_html = html.fromstring(driver.page_source)
+                while True:
                 
-                return page_html
+                    driver = self.start_driver()
+                    driver.get(url)
+                    sleep(self.site.sleep_time)
+                    page_html = html.fromstring(driver.page_source)
+                    
+                    if page_html is not None:
+                        return page_html
                 
                 
             case "requests":
 
-                session = HTMLSession()
-                response = session.get(url)
-                html_string = response.html.html
-                page_html = html.fromstring(html_string)
+                while True:
 
-                return page_html
-        
+                    session = HTMLSession()
+                    response = session.get(url)
+                    html_string = response.html.html
+                    page_html = html.fromstring(html_string)
+                    
+                    if page_html is not None:
+                        return page_html
+
     def parse_html(self):
 
-        for selected in tqdm(self.html.xpath(self.site.base_path)):
+        for selected in self.html.xpath(self.site.base_path):
             
             if self.site.counter < 100:
             
