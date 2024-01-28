@@ -57,7 +57,7 @@ def ask_stores():
     
     while True:
     
-        amazon_store = input("Do you want to search on Amazon? [y/n]")
+        amazon_store = input("Do you want to search on Amazon? [y/n]: ")
     
         if amazon_store == "y":
             stores.append(amazon)
@@ -68,7 +68,7 @@ def ask_stores():
     
     while True:
         
-        ml_store = input("Do you want to search on Mercado Libre [y/n]")
+        ml_store = input("Do you want to search on Mercado Libre [y/n]: ")
         
         if ml_store == "y":
             stores.append(ml) 
@@ -87,6 +87,9 @@ def start_scrapper(products, stores):
         "sites": [store for store in stores]
         
     }
+    
+    print("Perfect! Let's start to work")
+    print("This may take some minutes")
     
     Scrapper(user_prompts)
     
