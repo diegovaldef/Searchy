@@ -1,4 +1,5 @@
 import inflect
+import sys
 from scrapper import Scrapper
 import mysites
 
@@ -16,8 +17,8 @@ def welcome():
     print("Welcome!, here are some reminders:\n")
     print("- You can only search for a max of 5 products")
     print("- Write 'finish' to complete the writing of products (if you don't want 5)")
-    print("- For each product and store prompted 100 products will be searched")
-    print("- The results will appear in a Excel file")
+    print("- For each product and store prompted 100 products will be searched at most")
+    print("- The results will appear in a Excel file\n")
     
 def ask_products():
     
@@ -28,6 +29,10 @@ def ask_products():
         product = input(f"Write your {p.ordinal(len(products) + 1)} product: ")
         
         if product == "finish":
+            
+            if len(products) == 0:
+                sys.exit("Please write at least one product")
+            
             break
         
         products.append(product)
@@ -59,6 +64,11 @@ def ask_stores():
     
         elif ml_store == "n":
             break
+        
+        
+    if stores == []:
+        sys.exit("Please search at least in one store")
+        
         
     return stores
         
