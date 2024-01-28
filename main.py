@@ -1,5 +1,6 @@
 import inflect
 import sys
+from time import sleep
 from scrapper import Scrapper
 import mysites
 
@@ -82,12 +83,13 @@ def start_scrapper(products, stores):
     }
     
     print("\nPerfect! Let's start to work")
-    print("This may take some minutes")
+    print("This may take some minutes (Some weird texts will appear, don't worry thats normal)")
     
     Scrapper(user_prompts)
     
     print("Done!")
     print("Your Excel file is in this directory")
+    sleep(5)
 
 def main():
     
