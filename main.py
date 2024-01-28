@@ -29,10 +29,12 @@ MAX_PRODUCT_QTY = 5
 
 def welcome():
     
-    print("Welcome!, here some reminders:\n")
+    print("-- Harvard CS50P Final Proyect ---- 'Searchy' by Diego Valdes --\n")
+    
+    print("Welcome!, here are some reminders:\n")
     print("- You can only search for a max of 5 products")
-    print("- Write 'finish' to complete the writing of products")
-    print("(if you don't want 5)\n\n")
+    print("- Write 'finish' to complete the writing of products (if you don't want 5)\n")
+
     
 def ask_products():
     
@@ -40,7 +42,7 @@ def ask_products():
     welcome()
     
     while len(products) < MAX_PRODUCT_QTY:
-        product = input(f"Write your {p.ordinal(len(products))} product")
+        product = input(f"Write your {p.ordinal(len(products) + 1)} product: ")
         
         if product == "finish":
             break
