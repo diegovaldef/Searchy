@@ -33,8 +33,8 @@ def welcome():
     
     print("Welcome!, here are some reminders:\n")
     print("- You can only search for a max of 5 products")
-    print("- Write 'finish' to complete the writing of products (if you don't want 5)\n")
-
+    print("- Write 'finish' to complete the writing of products (if you don't want 5)")
+    print("- The results will appear in a Excel file")
     
 def ask_products():
     
@@ -88,11 +88,13 @@ def start_scrapper(products, stores):
         
     }
     
-    print("Perfect! Let's start to work")
+    print("\nPerfect! Let's start to work")
     print("This may take some minutes")
     
     Scrapper(user_prompts)
     
+    print("Done!")
+    print("Your Excel file is in this directory")
 
 def main():
     
