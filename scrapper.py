@@ -111,7 +111,7 @@ class Scrapper:
             options = webdriver.ChromeOptions()
             options.add_argument("--headless")
                         
-            self.driver = webdriver.Remote(command_executor="http://172.17.0.1:444", options=options)            
+            self.driver = webdriver(options=options)            
                         
         return self.driver 
 
