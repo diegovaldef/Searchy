@@ -91,7 +91,7 @@ def post_scrapper():
     
     print("Done!")
     print("Your Excel file is in this directory")
-    sleep(1)
+    sleep(2)
     print("Opening the results...")
     sleep(2)
     
