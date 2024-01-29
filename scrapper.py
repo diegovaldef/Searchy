@@ -6,8 +6,6 @@ from tqdm import tqdm
 from os import system, name as os_name
 import pandas as pd
 
-# TODO JOBLIB AND TQDM
-
 class Scrapper:
         
     def __init__(self, user_prompts):
@@ -34,6 +32,7 @@ class Scrapper:
                 while self.site.counter < self.max_products:
                 
                     self.html = self.get_html(url)
+                    self.start_pbar()
                     self.elements = self.parse_html()
                     self.dataframe = self.make_excel()
 
@@ -92,8 +91,7 @@ class Scrapper:
                     self.site.raw_elements[element] = selected.xpath(path)
                 
                 self.site.fix_elements()
-                self.pbar.update(1)
-                
+
             else:
                 break
             
@@ -124,9 +122,11 @@ class Scrapper:
             options.add_argument("log-level=3") 
                         
             self.driver = webdriver.Chrome(options=options)
-            self.pbar = tqdm(total = len(self.prompts) * len(self.sites) * self.max_products)            
-                        
+                  
         return self.driver 
+
+    def start_pbar(self):
+        self.pbar = tqdm(total = len(self.prompts) * len(self.sites) * self.max_products)      
 
     def exit(self):
         
