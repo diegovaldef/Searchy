@@ -84,8 +84,7 @@ def ask_stores():
 def pre_scrapper():
     
     print("\nPerfect! Let's start to work")
-    print("This may take some minutes (Some weird texts will appear, don't worry thats normal)")
-    sleep(2)
+    sleep(0.5)
 
 def post_scrapper():
     
