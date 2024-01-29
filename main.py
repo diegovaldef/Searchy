@@ -1,7 +1,6 @@
 import inflect
 import sys
 from time import sleep
-import os
 import subprocess
 
 from scrapper import Scrapper
