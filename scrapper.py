@@ -6,6 +6,8 @@ from tqdm import tqdm
 from os import system, name as os_name
 import pandas as pd
 
+# TODO JOBLIB AND TQDM
+
 class Scrapper:
         
     def __init__(self, user_prompts):
@@ -14,7 +16,8 @@ class Scrapper:
         self.prompts = user_prompts["prompts"]
         
         self.driver = None
-       
+        self.max_products = 100
+        
         self.execute()
         
     def execute(self):
@@ -28,7 +31,7 @@ class Scrapper:
                 self.product = self.prompts[prompt]
                 url = self.site.url + self.product
                 
-                while self.site.counter < 100:
+                while self.site.counter < self.max_products:
                 
                     self.html = self.get_html(url)
                     self.elements = self.parse_html()
@@ -82,13 +85,14 @@ class Scrapper:
 
         for selected in self.html.xpath(self.site.base_path):
             
-            if self.site.counter < 100:
+            if self.site.counter < self.max_products:
             
                 for element, path in self.site.paths.items():
                         
                     self.site.raw_elements[element] = selected.xpath(path)
                 
                 self.site.fix_elements()
+                self.pbar.update(1)
                 
             else:
                 break
@@ -119,7 +123,8 @@ class Scrapper:
             options.add_argument("--headless")
             options.add_argument("log-level=3") 
                         
-            self.driver = webdriver.Chrome(options=options)            
+            self.driver = webdriver.Chrome(options=options)
+            self.pbar = tqdm(total = len(self.prompts) * len(self.sites) * self.max_products)            
                         
         return self.driver 
 
@@ -130,5 +135,7 @@ class Scrapper:
         
         if self.driver:
             self.driver.close()
+            
+        self.pbar.close()
             
         system("clear" if os_name == "posix" else "cls")
