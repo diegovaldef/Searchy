@@ -1,4 +1,5 @@
 from default_site import Site
+from scrapper import Pbar
 from re import search
 
 class Amazon(Site):
@@ -38,8 +39,6 @@ class Amazon(Site):
             
         }
         
-        self.counter = 0
-
     def fix_elements(self):
         
         if (
@@ -61,7 +60,7 @@ class Amazon(Site):
             self.elements["Prime"].append("YES" if bool(self.raw_elements["Prime"]) else "NO")
             self.elements["Link"].append(f"https://www.amazon.com.mx/dp/{self.raw_elements["Link"][0]}")
 
-            self.counter += 1
+            Pbar.update(1)
 
         elif (self.raw_elements["Title_Promotion"]
             and self.raw_elements["Price"]
@@ -82,7 +81,7 @@ class Amazon(Site):
             self.elements["Prime"].append("YES" if bool(self.raw_elements["Prime"]) else "NO")
             self.elements["Link"].append(f"https://www.amazon.com.mx/dp/{self.raw_elements["Link"][0]}")
 
-            self.counter += 1
+            Pbar.update(1)
 
 class ML(Site):
     
@@ -123,9 +122,7 @@ class ML(Site):
 
         }
         
-        self.counter = 0
-    
-    
+
     def fix_elements(self):
         
         if  (
@@ -145,5 +142,5 @@ class ML(Site):
             self.elements["Free_Shipping"].append("YES" if bool(self.raw_elements["Free_Shipping"]) else "NO")
             self.elements["Full"].append("YES" if bool(self.raw_elements["Full"]) else "NO" )
             self.elements["Link"].append(self.raw_elements["Link"][0])
-            
-            self.counter += 1
+
+            Pbar.update(1)

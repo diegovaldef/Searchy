@@ -5,7 +5,6 @@ from time import sleep
 from tqdm import tqdm
 from os import system, name as os_name
 import pandas as pd
-
 class Scrapper:
         
     def __init__(self, user_prompts):
@@ -29,10 +28,10 @@ class Scrapper:
                 self.product = self.prompts[prompt]
                 url = self.site.url + self.product
                 
-                while self.site.counter < self.max_products:
+                while Pbar.counter < self.max_products:
                 
                     self.html = self.get_html(url)
-                    self.start_pbar()
+                    Pbar(self.prompts, self.sites, self.max_products)
                     self.elements = self.parse_html()
                     self.dataframe = self.make_excel()
 
@@ -47,7 +46,7 @@ class Scrapper:
                     except IndexError:
                         continue                    
                         
-                self.site.counter = 0
+                Pbar.counter = 0
             
         self.exit()
     
@@ -84,7 +83,7 @@ class Scrapper:
 
         for selected in self.html.xpath(self.site.base_path):
             
-            if self.site.counter < self.max_products:
+            if Pbar.counter < self.max_products:
             
                 for element, path in self.site.paths.items():
                         
@@ -125,9 +124,6 @@ class Scrapper:
                   
         return self.driver 
 
-    def start_pbar(self):
-        self.pbar = tqdm(total = len(self.prompts) * len(self.sites) * self.max_products)      
-
     def exit(self):
         
         self.dataframe = self.dataframe[[col for col in self.dataframe.columns if col != self.site.last_column] + [self.site.last_column]]
@@ -136,6 +132,27 @@ class Scrapper:
         if self.driver:
             self.driver.close()
             
-        self.pbar.close()
+        Pbar.close()
             
         system("clear" if os_name == "posix" else "cls")
+        
+        
+class Pbar:
+    
+    bar = None
+    counter = 0
+    
+    @classmethod
+    def __init__(cls, prompts, sites, max_products):
+        
+        if not cls.bar:
+            cls.bar = tqdm(total = len(prompts) * len(sites) * max_products) 
+        
+    @classmethod
+    def update(cls, number):
+        cls.counter += 1
+        cls.bar.update(number)
+        
+    @classmethod
+    def close(cls):
+        cls.bar.close()
