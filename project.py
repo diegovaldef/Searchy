@@ -97,7 +97,9 @@ def post_scrapper():
         subprocess.Popen(['start', 'excel', excel_file], shell=True)
 
     except Exception:
-        sys.exit("No se pudo abrir el archivo Excel")       
+        return False
+    
+    return True       
 
 def start_scrapper(products, stores):
     
@@ -110,7 +112,10 @@ def start_scrapper(products, stores):
     
     pre_scrapper()
     Scrapper(user_prompts)
-    post_scrapper()
+    
+    if not post_scrapper():
+        sys.exit("No se pudo abrir el archivo Excel")
+    
     
 def main():
     
