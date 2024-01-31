@@ -4,6 +4,7 @@ from lxml import html
 from time import sleep
 from tqdm import tqdm
 from os import system, name as os_name
+from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 class Scrapper:
         
@@ -118,9 +119,9 @@ class Scrapper:
             
             options = webdriver.ChromeOptions()
             options.add_argument("--headless")
-            options.add_argument("log-level=3") 
-                        
-            self.driver = webdriver.Chrome(options=options)
+            options.add_argument("log-level=3")
+                
+            self.driver = webdriver.Chrome(service= webdriver.ChromeService(ChromeDriverManager().install()), options=options)
                   
         return self.driver 
 
