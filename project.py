@@ -6,8 +6,6 @@ import subprocess
 from scrapper import Scrapper
 import mysites
 
-p = inflect.engine()
-
 MAX_PRODUCT_QTY = 5
 
 def welcome():
@@ -26,7 +24,7 @@ def input_products():
     
     while len(products) < MAX_PRODUCT_QTY:
         
-        product = input(f"Write your {p.ordinal(len(products) + 1)} product: ")
+        product = input(f"Write your {inflect.engine().ordinal(len(products) + 1)} product: ")
         
         if check_products(product, products): break
         
