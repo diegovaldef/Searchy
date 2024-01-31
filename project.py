@@ -64,7 +64,6 @@ def check_products(product, products):
         
     return False
     
-
 def format_stores(stores):
     
     formated_stores = []
