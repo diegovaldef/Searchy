@@ -51,6 +51,7 @@ def input_stores():
             stores["ml"] = ml_store
             break
 
+    stores = format_stores(stores)
     return stores
     
 def check_products(product, products):
@@ -125,10 +126,8 @@ def main():
     welcome()
     
     products = input_products()
-    excel_file = excel_name(products)
-    
     stores = input_stores()
-    stores = format_stores(stores)
+    excel_file = excel_name(products)
     
     start_scrapper(products, stores, excel_file)
 
