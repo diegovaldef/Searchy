@@ -1,6 +1,5 @@
 pandas
 inflect
-subprocess
 selenium
 requests_html
 lxml
