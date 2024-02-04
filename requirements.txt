@@ -1,1 +1,9 @@
-
+pandas
+inflect
+subprocess
+selenium
+requests_html
+lxml
+webdriver_manager
+tqdm
+pytest
