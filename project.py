@@ -69,7 +69,7 @@ def format_stores(stores):
     
     formated_stores = []
     
-    if set(stores) == "n":
+    if set(stores.values()) == {"n"}:
         sys.exit("Please search at least in one store")
 
     if stores["amazon"] == "y": 
