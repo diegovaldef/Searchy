@@ -27,4 +27,8 @@ def test_excel_name():
     assert excel_name(["Box", "Small Box", "Big Box"]) == "Box.xlsx"
     assert excel_name(["Smartphone", "Iphone", "Xiaomi"]) == "Smartphone.xlsx"
 
+def test_post_scrapper():
+    
+    assert post_scrapper("test_excel.xlsx") == True
 
+    
