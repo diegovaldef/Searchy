@@ -38,7 +38,7 @@ The tool may take some time to complete the search, depending on the number of p
 
 ## Details Section
 
-In this section we are gonna show what each file does and how it works
+In this section we will explain what each important file does and how it works.
 
 ### Project.py
 
@@ -107,3 +107,29 @@ After scraping data from all combinations, the final DataFrame is saved to an Ex
 
 Please note that the code is designed to be modular, making use of classes and methods for better organization and readability. The progress bar is used to provide feedback on the scraping progress.
 
+### Mysites.py
+
+The file that stores the information of the sites in classes
+
+#### Common Base Class: Site
+
+##### Attributes:
+
+- name: Name of the website (e.g., "Amazon", "Mercado Libre").
+- url: Base URL for the website.
+- html_obteined_with: Specifies the method used to obtain HTML data (e.g., "selenium", "requests").
+- sleep_time: A delay time used for scraping to prevent being blocked by the website.
+- base_path: XPath expression for the base path of the HTML elements to be scraped.
+- paths: Dictionary containing XPath expressions for specific data elements like Title, Price, Stars, Reviews, etc.
+- next_page: XPath expression for the link to the next page.
+- prefix_next_page: Prefix to be added to the next page link.
+- sufix_next_page: Suffix to be added to the next page link.
+- last_column: Indicates the last column in the dataset.
+- raw_elements: Dictionary to store raw data scraped from the website.
+- elements: Dictionary to store processed and formatted data.
+
+##### Methods:
+
+fix_elements(): Processes raw elements and populates the elements dictionary with cleaned and formatted data.
+Checks for specific conditions in the raw data and transforms it into a more usable format.
+Updates a progress bar (Pbar) to track the number of elements processed.
