@@ -52,13 +52,21 @@ It imports a custom module scrapper and two modules that define classes related 
 #### Functions:
 
 - welcome(): Displays welcome messages and reminders about the application's usage.
+
 - input_products(): Takes user input for up to 5 products and checks for a special input, "finish," to stop input.
+
 - input_stores(): Takes user input for whether they want to search on Amazon and/or Mercado Libre.
+
 - check_products(product, products): Checks if the user input is "finish" and if the product list is not empty.
+
 - format_stores(stores): Formats the user's store preferences into a list of site-specific classes from mysites.
+
 - excel_name(products): Generates an Excel file name based on the first product in the list.
+
 - pre_scrapper(): Displays a message before the web scraping process begins.
+
 - post_scrapper(excel_file): Displays a completion message, opens the resulting Excel file, and handles exceptions if the file cannot be opened.
+
 - start_scrapper(products, stores, excel_file): Initiates the web scraping process by creating a Scrapper object with user prompts and opens the resulting Excel file.
 
 ### Scrapper.py
@@ -66,3 +74,36 @@ It imports a custom module scrapper and two modules that define classes related 
 The file that does the scrapping of all the data
 
 #### Scrapper Class:
+
+- `__init__`(self, user_prompts): Initializes the scraper with user-provided prompts and sites. Sets up variables, including the Selenium WebDriver, maximum number of products to scrape (max_products), and then calls the execute method.
+
+- execute(self): Iterates through each site and prompt combination. Calls methods to get HTML, parse HTML, and make an Excel file for each combination.
+
+- get_html(self, url): Retrieves HTML content from the specified URL using either Selenium or Requests, depending on the specified method in the site configuration.
+
+- parse_html(self): Parses the HTML content based on the provided XPath expressions in the site configuration and stores the extracted data in the site.elements attribute.
+
+- make_excel(self): Creates a Pandas DataFrame from the extracted elements and concatenates it with the existing DataFrame (if any). The resulting DataFrame is saved as an Excel file.
+
+- start_driver(self): Initializes the Selenium WebDriver if it doesn't exist, and returns the driver.
+
+- exit(self): Cleans up by organizing the final DataFrame, saving it to an Excel file, closing the WebDriver, and closing the progress bar.
+
+#### Pbar class:
+
+- `__init__`(cls, prompts, sites, max_products): Initializes a progress bar using the tqdm library with the total number of iterations calculated based on the number of prompts, sites, and max_products.
+
+- update(cls, number): Updates the progress bar by incrementing the counter and updating the bar.
+
+- close(cls): Closes the progress bar when the scraping process is complete.
+
+#### Overall flow:
+
+The script iterates through each site and prompt combination, fetching HTML content, parsing it to extract relevant information, and updating the progress bar.
+
+The extracted data is stored in a Pandas DataFrame, and the script continues to the next page (if available) until the maximum number of products (max_products) is reached.
+
+After scraping data from all combinations, the final DataFrame is saved to an Excel file, and the WebDriver is closed.
+
+Please note that the code is designed to be modular, making use of classes and methods for better organization and readability. The progress bar is used to provide feedback on the scraping progress.
+
