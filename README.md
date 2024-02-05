@@ -19,7 +19,7 @@ Download the Searchy.exe executable file from the project repository.
 Run Searchy.exe to start the tool.
 
 ### Search Configuration:
-Once the tool is started, follow the instructions in the GUI to enter the products you want to search for and select the stores.
+Once the tool is started, follow the instructions in the CLI to enter the products you want to search for and select the stores.
 
 ### Results:
 After completing the search, the tool will generate an Excel file in the same running directory.
@@ -30,6 +30,7 @@ Upon completion of the search, Searchy will automatically open the Excel file wi
 
 ## System Requirements
 Windows Operating System (to run the Searchy.exe executable file).
+Google Chrome in its latest version.
 It is not necessary to install additional libraries or have Python installed.
 
 ## Important Notes:
