@@ -35,3 +35,34 @@ It is not necessary to install additional libraries or have Python installed.
 ## Important Notes:
 Make sure you have permissions to run scripts and have Internet access to perform the searches.
 The tool may take some time to complete the search, depending on the number of products and the speed of the Internet connection.
+
+## Details Section
+
+In this section we are gonna show what each file does and how it works
+
+### Project.py
+
+The main file where all functions are grouped together
+
+#### Import Statements:
+
+The script imports necessary modules such as inflect, sys, sleep from time, and subprocess.
+It imports a custom module scrapper and two modules that define classes related to the specific e-commerce sites.
+
+#### Functions:
+
+- welcome(): Displays welcome messages and reminders about the application's usage.
+- input_products(): Takes user input for up to 5 products and checks for a special input, "finish," to stop input.
+- input_stores(): Takes user input for whether they want to search on Amazon and/or Mercado Libre.
+- check_products(product, products): Checks if the user input is "finish" and if the product list is not empty.
+- format_stores(stores): Formats the user's store preferences into a list of site-specific classes from mysites.
+- excel_name(products): Generates an Excel file name based on the first product in the list.
+- pre_scrapper(): Displays a message before the web scraping process begins.
+- post_scrapper(excel_file): Displays a completion message, opens the resulting Excel file, and handles exceptions if the file cannot be opened.
+- start_scrapper(products, stores, excel_file): Initiates the web scraping process by creating a Scrapper object with user prompts and opens the resulting Excel file.
+
+### Scrapper.py
+
+The file that does the scrapping of all the data
+
+#### Scrapper Class:
