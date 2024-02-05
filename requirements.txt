@@ -6,3 +6,4 @@ lxml
 webdriver_manager
 tqdm
 pytest
+openpyxl
