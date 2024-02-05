@@ -44,11 +44,6 @@ In this section we will explain what each important file does and how it works.
 
 The main file where all functions are grouped together
 
-#### Import Statements:
-
-The script imports necessary modules such as inflect, sys, sleep from time, and subprocess.
-It imports a custom module scrapper and two modules that define classes related to the specific e-commerce sites.
-
 #### Functions:
 
 - welcome(): Displays welcome messages and reminders about the application's usage.
