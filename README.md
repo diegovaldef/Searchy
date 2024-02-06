@@ -2,6 +2,10 @@
 A simple way to search products on "Amazon" and "Mercado Libre" 
 (Currently only works on the Mexican versions)
 
+## Video Demo
+https://www.youtube.com/watch?v=QVZ1K2qVXAY
+
+
 ## What does Searchy do?
 Searchy is a web scraping tool designed to search and extract product information from online stores. The tool currently supports two popular stores: Amazon and Mercado Libre (Only on Mexico). It uses the Selenium and Requests_HTML libraries in Python to obtain data from web pages, and generates an Excel file with the search results.
 
